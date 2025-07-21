@@ -26,7 +26,7 @@ Every confession, proposal, or marriage information is recorded on-chain to ensu
 ## Contribution Guide
 
 Contributions, ideas, and suggestions from the open-source community are welcome!
-Please read `CONTRIBUTING.md` for contribution guidelines.
+Please read [CONTRIBUTING.md](doc/CONTRIBUTING.md) for contribution guidelines.
 
 ---
 
