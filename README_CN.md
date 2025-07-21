@@ -1,9 +1,11 @@
 # LoveLedger — 区块链上的“爱情账本”
 
+🔁 **[English Version](README.md)**
+
 > **LoveLedger** — 区块链上的“爱情账本”
 > 将爱的誓言、表白、求婚和婚姻信息永久记录于链上，守护真爱的信用。
 
-🔁 **[English Version](README.md)**
+
 
 ---
 
