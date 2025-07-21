@@ -1,5 +1,7 @@
 # LoveLedger — The Immutable Love Ledger on Blockchain
 
+🔁 **[简体中文](README_CN.md)**
+
 > **LoveLedger** — The Immutable Love Ledger on Blockchain
 > Permanently recording love promises, confessions, proposals, and marriage information on the blockchain, safeguarding the credit of true love.
 
