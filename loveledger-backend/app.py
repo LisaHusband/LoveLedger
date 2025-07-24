@@ -5,6 +5,10 @@ from web3 import Web3
 from dotenv import load_dotenv
 from extract_abi import extract_abi
 from flask_cors import CORS
+import logging
+from logging.handlers import RotatingFileHandler
+from flask import g
+
 
 load_dotenv()
 # 首次启动抽取 ABI
@@ -12,6 +16,24 @@ extract_abi()
 
 app = Flask(__name__)
 CORS(app)
+
+
+# 初始化日志系统
+ENABLE_LOGGING = os.getenv("ENABLE_LOGGING", "false").lower() == "true"
+LOG_PATH = os.path.join("log", "server.log")
+
+if ENABLE_LOGGING:
+    if not os.path.exists("log"):
+        os.makedirs("log")
+    handler = RotatingFileHandler(LOG_PATH, maxBytes=5*1024*1024, backupCount=3)
+    formatter = logging.Formatter("[%(asctime)s] %(levelname)s in %(module)s: %(message)s")
+    handler.setFormatter(formatter)
+    handler.setLevel(logging.INFO)
+    app.logger.addHandler(handler)
+    app.logger.setLevel(logging.INFO)
+    app.logger.info("Logging enabled.")
+else:
+    app.logger.setLevel(logging.CRITICAL)
 
 # 环境变量
 ALCHEMY_API_URL = os.getenv("ALCHEMY_API_URL")
@@ -36,31 +58,46 @@ def send_transaction(fn_call):
         "from": ACCOUNT_ADDRESS,
         "nonce": nonce,
         "gas": 300_000,
-        "max_fee_per_gas": web3.to_wei(10, "gwei"),
-        "max_priority_fee_per_gas": web3.to_wei(2, "gwei"),
+        "maxFeePerGas": web3.to_wei(10, "gwei"),
+        "maxPriorityFeePerGas": web3.to_wei(2, "gwei"),
     })
     signed = web3.eth.account.sign_transaction(tx, PRIVATE_KEY)
-    # v6 以上属性名改为 raw_tx
-    raw_tx = signed.raw_tx
+    
+    # Web3.py v7 中是 raw_transaction，不是 raw_tx
+    raw_tx = signed.raw_transaction
     tx_hash = web3.eth.send_raw_transaction(raw_tx)
     return web3.to_hex(tx_hash)
 
-# @app.route("/confess", methods=["POST"])
-# def confess():
-#     data = request.get_json(force=True)
-#     to_addr = data.get("to")
-#     title = data.get("title")
-#     message = data.get("message")
-#     if not all([to_addr, title, message]):
-#         return jsonify({"error": "缺少必填字段"}), 400
 
-#     try:
-#         to_addr = Web3.to_checksum_address(to_addr)
-#         fn = contract.functions.confess(to_addr, title, message)
-#         tx_hash = send_transaction(fn)
-#         return jsonify({"tx_hash": tx_hash}), 201
-#     except Exception as e:
-#         return jsonify({"error": str(e)}), 500
+@app.before_request
+def log_request_info():
+    if ENABLE_LOGGING:
+        g.request_data = request.get_data(as_text=True)
+        app.logger.info(f"Request: {request.method} {request.path} | Body: {g.request_data}")
+
+@app.after_request
+def log_response_info(response):
+    if ENABLE_LOGGING:
+        app.logger.info(f"Response: {request.method} {request.path} | Status: {response.status_code}")
+    return response
+
+@app.route("/confess", methods=["POST"])
+def confess():
+    data = request.get_json(force=True)
+    to_addr = data.get("to")
+    title = data.get("title")
+    message = data.get("message")
+    if not all([to_addr, title, message]):
+        return jsonify({"error": "缺少必填字段"}), 400
+
+    try:
+        to_addr = Web3.to_checksum_address(to_addr)
+        fn = contract.functions.confess(to_addr, title, message)
+        tx_hash = send_transaction(fn)
+        app.logger.info(f"Confession sent from {ACCOUNT_ADDRESS} to {to_addr}")
+        return jsonify({"tx_hash": tx_hash}), 201
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
 
 @app.route("/register_marriage", methods=["POST"])
 def register_marriage():
