@@ -19,14 +19,42 @@ LoveLedger 是一个基于区块链技术的浪漫应用，旨在为真正相爱
 
 ---
 
-## 核心功能（规划中）
+## 核心功能（当前仅支持部署者向他人表达爱）
 
 * 💌 **链上表白与求婚** — 记录你那永不褪色的爱之誓言。
-* 🎉 **链上祝福系统** — 来自全球用户的支持与祝福。
+* 🎉 **链上祝福系统** — 来自全球用户的支持与祝福。(规划中)
 * 💍 **婚姻上链登记** — 见证爱情的永久承诺。
-* 📊 **情侣忠诚度评分** — 通过交互与链上行为构建情侣信用。
+* 📊 **情侣忠诚度评分** — 通过交互与链上行为构建情侣信用。(规划中)
 * 🔍 **公开记录查询** — 所有爱情记录均可公开透明地检索。
 * 🔐 **去中心化身份系统** — 基于钱包地址的安全身份验证。
+
+---
+## 环境搭建
+
+
+### 环境依赖
+* **Node.js-Version 18.18.2**
+* **Python-Version 3.12.0**
+
+### 依赖安装
+
+* **前端依赖安装** — cd到loveledger-frontend文件夹，运行`npm install`安装前端依赖。
+* **后端依赖安装** — cd到loveledger-backend文件夹，运行`pip install -r requirements.txt`安装后端依赖(可选虚拟环境)。
+* **合约依赖安装** — cd到Contract文件夹，运行`npm install`安装合约依赖。
+
+### 环境配置文件
+
+* **前端.env配置** — 无需配置。
+* **后端.env配置** — `cp loveledger-backend/.env.example loveledger-backend/.env` 然后填充自己的账户地址，私钥，合约部署地址（**部署合约**后会输出到控制台）以及API信息。
+* **合约.env配置** — `cp Contract/.env.example Contract/.env` 然后填充自己的私钥以及API信息。
+
+
+
+## 运行流程
+
+* **部署合约** — cd到Contract文件夹，运行`npx hardhat run scripts/deploy.js --network sepolia` 在 Sepolia 网络上部署合约。
+* **部署前端** — cd到loveledger-frontend文件夹，运行`npm run dev` 启动前端应用。
+* **部署后端** — cd到loveledger-backend文件夹，运行`python app.py` 启动后端应用。
 
 ---
 

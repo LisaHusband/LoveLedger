@@ -15,14 +15,43 @@ Every confession, proposal, or marriage information is recorded on-chain to ensu
 
 ---
 
-## Core Features（Planning)
+## Core Features (Currently only supports the deployer to express love to others)
 
 * 💌 **On-chain Confessions & Proposals** — Record your love vows that never fade.
-* 🎉 **On-chain Blessings** — Receive blessings and support from users worldwide.
+* 🎉 **On-chain Blessings** — Receive blessings and support from users worldwide.(planning)
 * 💍 **Marriage Registration** — Witness the permanent commitment of love.
-* 📊 **Loyalty Score** — Build a couple’s credit rating through interactions and on-chain behavior.
+* 📊 **Loyalty Score** — Build a couple’s credit rating through interactions and on-chain behavior.(planning)
 * 🔍 **Public Records Query** — Transparent and publicly accessible love records browsing and search.
 * 🔐 **Decentralized Identity** — Secure identity verification based on wallet addresses.
+
+---
+
+## Environment Setup
+
+### Environment Requirements
+
+* **Node.js Version: 18.18.2**
+* **Python Version: 3.12.0**
+
+### Dependency Installation
+
+* **Frontend Dependencies** — Navigate to the `loveledger-frontend` folder and run `npm install` to install frontend dependencies.
+* **Backend Dependencies** — Navigate to the `loveledger-backend` folder and run `pip install -r requirements.txt` to install backend dependencies (a virtual environment is optional).
+* **Smart Contract Dependencies** — Navigate to the `Contract` folder and run `npm install` to install contract dependencies.
+
+### Environment Configuration Files
+
+* **Frontend .env Configuration** — No configuration required.
+* **Backend .env Configuration** — Run `cp loveledger-backend/.env.example loveledger-backend/.env`, then fill in your wallet address, private key, contract deployment address (**printed to console after contract deployment**), and API information.
+* **Contract .env Configuration** — Run `cp Contract/.env.example Contract/.env`, then fill in your private key and API information.
+
+---
+
+## Run Instructions
+
+* **Deploy Smart Contract** — Navigate to the `Contract` folder and run `npx hardhat run scripts/deploy.js --network sepolia` to deploy the contract on the Sepolia network.
+* **Start Frontend** — Navigate to the `loveledger-frontend` folder and run `npm run dev` to launch the frontend application.
+* **Start Backend** — Navigate to the `loveledger-backend` folder and run `python app.py` to start the backend service.
 
 ---
 

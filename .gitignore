@@ -11,3 +11,4 @@ scr_config.py
 __pycache__
 .vscode
 loveledger.db
+log/
