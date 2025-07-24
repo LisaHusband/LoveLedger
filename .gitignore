@@ -1,3 +1,13 @@
-./template-web3-app
+template-web3-app/
 .env.local
 loveledger/
+venv/
+node_modules/
+yarn-error.log
+node_modules
+pkey_trans.py
+scr_config.py
+.env
+__pycache__
+.vscode
+loveledger.db
