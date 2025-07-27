@@ -4,6 +4,37 @@
     "inputs": [
       {
         "indexed": true,
+        "internalType": "uint256",
+        "name": "confessionId",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "receiver",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "enum LoveChain.ConfessionStatus",
+        "name": "status",
+        "type": "uint8"
+      }
+    ],
+    "name": "ConfessionResponded",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "confessionId",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
         "internalType": "address",
         "name": "sender",
         "type": "address"
@@ -33,7 +64,7 @@
         "type": "uint256"
       }
     ],
-    "name": "LoveSent",
+    "name": "ConfessionSent",
     "type": "event"
   },
   {
@@ -41,23 +72,10 @@
     "inputs": [
       {
         "indexed": true,
-        "internalType": "address",
-        "name": "user",
-        "type": "address"
-      },
-      {
-        "indexed": false,
         "internalType": "uint256",
-        "name": "newScore",
+        "name": "marriageId",
         "type": "uint256"
-      }
-    ],
-    "name": "LoyaltyUpdated",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
+      },
       {
         "indexed": true,
         "internalType": "address",
@@ -77,7 +95,32 @@
         "type": "uint256"
       }
     ],
-    "name": "MarriageRegistered",
+    "name": "MarriageProposed",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "marriageId",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "partnerB",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "enum LoveChain.MarriageStatus",
+        "name": "status",
+        "type": "uint8"
+      }
+    ],
+    "name": "MarriageResponded",
     "type": "event"
   },
   {
@@ -99,13 +142,69 @@
       }
     ],
     "name": "confess",
-    "outputs": [],
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
     "stateMutability": "nonpayable",
     "type": "function"
   },
   {
-    "inputs": [],
-    "name": "getAllConfessions",
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "name": "confessions",
+    "outputs": [
+      {
+        "internalType": "string",
+        "name": "title",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "message",
+        "type": "string"
+      },
+      {
+        "internalType": "address",
+        "name": "sender",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "receiver",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "timestamp",
+        "type": "uint256"
+      },
+      {
+        "internalType": "enum LoveChain.ConfessionStatus",
+        "name": "status",
+        "type": "uint8"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "receiver",
+        "type": "address"
+      }
+    ],
+    "name": "getConfessionsTo",
     "outputs": [
       {
         "components": [
@@ -133,9 +232,74 @@
             "internalType": "uint256",
             "name": "timestamp",
             "type": "uint256"
+          },
+          {
+            "internalType": "enum LoveChain.ConfessionStatus",
+            "name": "status",
+            "type": "uint8"
           }
         ],
-        "internalType": "struct LoveChain.LoveRecord[]",
+        "internalType": "struct LoveChain.Confession[]",
+        "name": "",
+        "type": "tuple[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "user",
+        "type": "address"
+      }
+    ],
+    "name": "getLoveCredit",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "user",
+        "type": "address"
+      }
+    ],
+    "name": "getMarriagesOf",
+    "outputs": [
+      {
+        "components": [
+          {
+            "internalType": "address",
+            "name": "partnerA",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "partnerB",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "timestamp",
+            "type": "uint256"
+          },
+          {
+            "internalType": "enum LoveChain.MarriageStatus",
+            "name": "status",
+            "type": "uint8"
+          }
+        ],
+        "internalType": "struct LoveChain.Marriage[]",
         "name": "",
         "type": "tuple[]"
       }
@@ -151,32 +315,27 @@
         "type": "uint256"
       }
     ],
-    "name": "loveRecords",
+    "name": "marriages",
     "outputs": [
       {
-        "internalType": "string",
-        "name": "title",
-        "type": "string"
-      },
-      {
-        "internalType": "string",
-        "name": "message",
-        "type": "string"
-      },
-      {
         "internalType": "address",
-        "name": "sender",
+        "name": "partnerA",
         "type": "address"
       },
       {
         "internalType": "address",
-        "name": "receiver",
+        "name": "partnerB",
         "type": "address"
       },
       {
         "internalType": "uint256",
         "name": "timestamp",
         "type": "uint256"
+      },
+      {
+        "internalType": "enum LoveChain.MarriageStatus",
+        "name": "status",
+        "type": "uint8"
       }
     ],
     "stateMutability": "view",
@@ -190,7 +349,31 @@
         "type": "address"
       }
     ],
-    "name": "loyaltyInteraction",
+    "name": "registerMarriage",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "confessionId",
+        "type": "uint256"
+      },
+      {
+        "internalType": "bool",
+        "name": "accept",
+        "type": "bool"
+      }
+    ],
+    "name": "respondConfession",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
@@ -198,12 +381,17 @@
   {
     "inputs": [
       {
-        "internalType": "address",
-        "name": "partner",
-        "type": "address"
+        "internalType": "uint256",
+        "name": "marriageId",
+        "type": "uint256"
+      },
+      {
+        "internalType": "bool",
+        "name": "accept",
+        "type": "bool"
       }
     ],
-    "name": "registerMarriage",
+    "name": "respondMarriage",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"

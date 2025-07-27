@@ -1,0 +1,14 @@
+/* 页脚 */
+.footer {
+  background-color: white; /* 背景颜色改为白色 */
+  color: black; /* 文字颜色改为黑色 */
+  text-align: center;
+  padding: 20px;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+}
+
+.footer p {
+  font-size: 1rem;
+}

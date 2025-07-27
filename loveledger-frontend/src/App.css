@@ -1,8 +1,17 @@
 .App {
   font-family: Arial, sans-serif;
   padding: 20px;
-  max-width: 600px;
+  max-width: 1000px; /* 增加最大宽度 */
   margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+section {
+  flex: 1 1 48%; /* 每个表单项占 48% 的宽度 */
+  min-width: 300px; /* 最小宽度限制，避免太窄 */
+  margin: 10px;
 }
 
 input, textarea, button {
@@ -11,6 +20,10 @@ input, textarea, button {
   margin: 10px 0;
   border: 1px solid #ccc;
   border-radius: 4px;
+}
+
+textarea {
+  resize: vertical; /* 允许垂直调整大小 */
 }
 
 button {
@@ -24,6 +37,36 @@ button:hover {
   background-color: #45a049;
 }
 
-h2 {
+h1, h2 {
   color: #333;
+}
+
+h3 {
+  margin-top: 20px;
+  color: green;
+}
+
+h4 {
+  margin-bottom: 5px;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+ul li {
+  margin-bottom: 15px;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 15px;
+}
+
+.error {
+  color: red;
+  margin-top: 20px;
+}
+
+.success {
+  color: green;
+  margin-top: 20px;
 }

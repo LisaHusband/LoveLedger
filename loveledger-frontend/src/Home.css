@@ -1,0 +1,115 @@
+/* 基本重置样式 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  animation: gradientAnimation 5s infinite alternate; /* 动画设置 */
+  background-color: white; /* 背景颜色改为白色 */
+  color: black; /* 文字颜色改为黑色 */
+  background-size: 1000% 1000%;
+}
+
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* 顶部导航栏 */
+.navbar {
+  background-color: white; /* 背景颜色改为白色 */
+  color: black; /* 文字颜色改为黑色 */
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar h1 {
+  font-size: 2rem;
+}
+
+.navbar nav ul {
+  display: flex;
+  list-style: none;
+}
+
+.navbar nav ul li {
+  margin-left: 20px;
+}
+
+.navbar nav ul li a {
+  color: black; /* 文字颜色改为黑色 */
+  text-decoration: none;
+  font-size: 1rem;
+  transition: color 0.3s ease;
+}
+
+.navbar nav ul li a:hover {
+  color: gray; /* 悬停时变为灰色 */
+}
+
+/* 中央内容区域 */
+.content {
+  text-align: center;
+  padding: 50px 20px;
+}
+
+.content h2 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  color: black; /* 文字颜色改为黑色 */
+}
+
+.content p {
+  font-size: 1.2rem;
+  line-height: 1.8;
+  margin-bottom: 30px;
+  color: black; /* 文字颜色改为黑色 */
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+}
+
+.btn {
+  padding: 12px 25px;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.btn-primary {
+  background-color: black; /* 按钮背景颜色改为黑色 */
+  color: white; /* 按钮文字颜色改为白色 */
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color: #555; /* 悬停时按钮变为深灰色 */
+}
+
+.btn-secondary {
+  background-color: black; /* 按钮背景颜色改为黑色 */
+  color: white; /* 按钮文字颜色改为白色 */
+  border: none;
+}
+
+.btn-secondary:hover {
+  background-color: #777; /* 悬停时按钮变为中灰色 */
+}
+
+

@@ -38,8 +38,8 @@
       ]
     },
     "C:\\Users\\20716\\LoveLedger\\Contract\\contracts\\LoveChain.sol": {
-      "lastModificationDate": 1753347618357,
-      "contentHash": "3e062dbc4614855f180a4fd6b7412b29",
+      "lastModificationDate": 1753521041230,
+      "contentHash": "54e5cf9c0879f1c3032e49bc0e6d27b0",
       "sourceName": "contracts/LoveChain.sol",
       "solcConfig": {
         "version": "0.8.28",

@@ -50,7 +50,7 @@ Every confession, proposal, or marriage information is recorded on-chain to ensu
 ## Run Instructions
 
 * **Deploy Smart Contract** — Navigate to the `Contract` folder and run `npx hardhat run scripts/deploy.js --network sepolia` to deploy the contract on the Sepolia network.
-* **Start Frontend** — Navigate to the `loveledger-frontend` folder and run `npm run dev` to launch the frontend application.
+* **Start Frontend** — Navigate to the `loveledger-frontend` folder and run `npm start` to launch the frontend application.
 * **Start Backend** — Navigate to the `loveledger-backend` folder and run `python app.py` to start the backend service.
 
 ---

@@ -53,7 +53,7 @@ LoveLedger 是一个基于区块链技术的浪漫应用，旨在为真正相爱
 ## 运行流程
 
 * **部署合约** — cd到Contract文件夹，运行`npx hardhat run scripts/deploy.js --network sepolia` 在 Sepolia 网络上部署合约。
-* **部署前端** — cd到loveledger-frontend文件夹，运行`npm run dev` 启动前端应用。
+* **部署前端** — cd到loveledger-frontend文件夹，运行`npm start` 启动前端应用。
 * **部署后端** — cd到loveledger-backend文件夹，运行`python app.py` 启动后端应用。
 
 ---

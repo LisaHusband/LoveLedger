@@ -1,0 +1,110 @@
+/* TopBar.css */
+
+/* 基本布局 */
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  animation: gradientAnimation 5s infinite alternate; /* 动画设置 */
+  background: white; /* 背景色改为白色 */
+  color: black; /* 文字颜色改为黑色 */
+  transition: background-color 0.3s ease;
+  background-size: 400% 400%;
+}
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.topbar.dark {
+  background-color: #333; /* 暗黑模式下的背景 */
+  color: white; /* 暗黑模式下的文字 */
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo-image {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin: 0;
+  color: black; /* 标题文字为黑色 */
+}
+
+.navigation ul {
+  display: flex;
+  list-style: none;
+}
+
+.navigation li {
+  margin-left: 20px;
+}
+
+.navigation a {
+  color: black; /* 导航链接颜色改为黑色 */
+  text-decoration: none;
+  font-size: 1rem;
+  transition: color 0.3s ease;
+}
+
+.navigation a:hover {
+  color: gray; /* 悬停时改为灰色 */
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.btn-darkmode {
+  padding: 8px 12px;
+  background-color: transparent;
+  color: black; /* 按钮文本颜色改为黑色 */
+  border: 1px solid black; /* 按钮边框颜色改为黑色 */
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-darkmode:hover {
+  background-color: lightgray; /* 暗模式按钮悬停时变为浅灰色 */
+}
+
+.theme-color button {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1px solid black; /* 按钮边框颜色改为黑色 */
+  cursor: pointer;
+  background-color: white; /* 按钮背景色改为白色 */
+}
+
+.theme-color button:hover {
+  background-color: #d3d3d3; /* 按钮悬停时变为浅灰色 */
+}
+
+.language-selector {
+  padding: 5px 10px;
+  font-size: 1rem;
+  background-color: transparent;
+  color: black; /* 语言选择器文本颜色改为黑色 */
+  border: 1px solid black; /* 边框颜色改为黑色 */
+  border-radius: 5px;
+}

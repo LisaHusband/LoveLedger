@@ -12,3 +12,5 @@ __pycache__
 .vscode
 loveledger.db
 log/
+.pytest_cache
+get_file_structure.py

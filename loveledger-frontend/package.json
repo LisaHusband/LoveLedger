@@ -3,15 +3,27 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@ant-design/web3": "^1.24.0",
+    "@ant-design/web3-wagmi": "^2.11.0",
+    "@craco/craco": "^7.1.0",
+    "@tanstack/react-query": "^5.83.0",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.3.0",
     "@testing-library/user-event": "^13.5.0",
+    "antd": "^5.26.6",
     "axios": "^1.11.0",
+    "i18next": "^25.3.2",
+    "less": "^4.4.0",
+    "less-loader": "^12.3.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
+    "react-router-dom": "^7.7.1",
     "react-scripts": "5.0.1",
-    "web-vitals": "^2.1.4"
+    "viem": "^2.33.1",
+    "wagmi": "^2.16.0",
+    "web-vitals": "^2.1.4",
+    "web3": "^4.16.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -36,5 +48,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "typescript": "^4.9.5"
   }
 }

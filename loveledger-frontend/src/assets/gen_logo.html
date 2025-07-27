@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Heart Blockchain Animation</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/CCapture.js/1.1.0/ccapture.min.js"></script>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #181818;
+      color: #fff;
+    }
+    #controls {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background-color: rgba(0, 0, 0, 0.5);
+      padding: 10px;
+      border-radius: 8px;
+    }
+    button {
+      background-color: #444;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      margin: 5px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #555;
+    }
+  </style>
+</head>
+<body>
+  <div id="controls">
+    <button id="startBtn">Start Animation</button>
+    <button id="recordBtn" disabled>Start Recording</button>
+    <button id="stopBtn" disabled>Stop Recording</button>
+  </div>
+  
+  <script>
+    let t = 0;
+    let capturer;
+    let animationStarted = false;
+    let recordingStarted = false;
+    
+    // 创建画布
+    function setup() {
+      createCanvas(500, 500);
+      capturer = new CCapture({ format: 'gif', workersPath: 'https://cdnjs.cloudflare.com/ajax/libs/CCapture.js/1.1.0/' });
+    }
+
+    // 动画绘制函数
+    function draw() {
+      if (!animationStarted) return; // 如果没有开始动画，则不绘制
+
+      background(10, 30); // 暗背景 + 轻轨迹残影
+      translate(width / 2, height / 2); // 坐标中心化
+
+      for (let i = 0; i < 80; i++) {
+        let a = i * PI / 40 + t; // 角度遍历
+        let r = 16 * pow(sin(a), 3);
+        let x = r * 10 * cos(a) + sin(t + i) * 5;
+        let y = -(
+          13 * cos(a) -
+          5 * cos(2 * a) -
+          2 * cos(3 * a) -
+          cos(4 * a)
+        ) * 10 + cos(t + i * 2) * 5;
+
+        // 链式连接
+        if (i) {
+          line(px, py, x, y);
+        }
+
+        // 节点闪烁效果
+        stroke(100 + 155 * sin(t * 3 + i), 200, 255);
+        point(x, y);
+
+        px = x;
+        py = y;
+      }
+
+      // 如果开始录制，捕捉每帧
+      if (recordingStarted) {
+        capturer.capture(document.getElementById('defaultCanvas0'));
+      }
+
+      t += 0.015; // 时间增量
+    }
+
+    // 控制按钮事件
+    document.getElementById('startBtn').addEventListener('click', function() {
+      animationStarted = true;
+      document.getElementById('startBtn').disabled = true;
+      document.getElementById('recordBtn').disabled = false; // 启用录制按钮
+    });
+
+    document.getElementById('recordBtn').addEventListener('click', function() {
+      capturer.start();
+      recordingStarted = true;
+      document.getElementById('recordBtn').disabled = true;
+      document.getElementById('stopBtn').disabled = false; // 启用停止按钮
+    });
+
+    document.getElementById('stopBtn').addEventListener('click', function() {
+      capturer.stop();
+      capturer.save(); // 保存为GIF
+      recordingStarted = false;
+      document.getElementById('stopBtn').disabled = true;
+    });
+  </script>
+</body>
+</html>
