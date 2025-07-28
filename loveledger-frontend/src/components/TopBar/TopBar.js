@@ -10,13 +10,15 @@ const { Title } = Typography;
 const { Option } = Select;
 
 const TopBar = ({ darkMode, toggleDarkMode }) => {
-  const [language, setLanguage] = useState('zh'); // 默认语言为中文
-  const { t, i18n } = useTranslation(); // 获取翻译函数
+  // const [darkMode, setDarkMode] = useState(false);
+  const [language, setLanguage] = useState('en'); // 默认语言为英文
 
+  const { t } = useTranslation();
+  
   // 切换语言
   const handleLanguageChange = (lang) => {
     setLanguage(lang);
-    i18n.changeLanguage(lang); // 更新 i18n 的语言设置
+    // 可以在此处加载不同的语言文件，例如通过国际化库（如react-i18next）处理语言切换
   };
 
   return (
