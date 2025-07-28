@@ -1,65 +1,59 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import './TopBar.css'; // 引入CSS样式
+import { Layout, Menu, Select, Switch, Typography } from 'antd'; // 引入 Ant Design 组件
 import logo from '../../assets/logo.gif';
+import './TopBar.css'; // 引入CSS样式
+import { useTranslation } from 'react-i18next';
 
-const TopBar = () => {
-  const [darkMode, setDarkMode] = useState(false);
-  const [themeColor, setThemeColor] = useState('#f8f8f8ff'); // 默认主题色
-  const [language, setLanguage] = useState('en'); // 默认语言为英文
+const { Header } = Layout;
+const { Title } = Typography;
+const { Option } = Select;
 
-  // 切换暗亮模式
-  const toggleDarkMode = () => {
-    setDarkMode(!darkMode);
-    document.body.classList.toggle('dark-mode', !darkMode);  // 切换全局的暗黑模式样式
-  };
-
-  // 切换主题颜色
-  const handleThemeColorChange = (color) => {
-    setThemeColor(color);
-    document.documentElement.style.setProperty('--theme-color', color); // 更新根元素的主题颜色
-  };
+const TopBar = ({ darkMode, toggleDarkMode }) => {
+  const [language, setLanguage] = useState('zh'); // 默认语言为中文
+  const { t, i18n } = useTranslation(); // 获取翻译函数
 
   // 切换语言
   const handleLanguageChange = (lang) => {
     setLanguage(lang);
-    // 可以在此处加载不同的语言文件，例如通过国际化库（如react-i18next）处理语言切换
+    i18n.changeLanguage(lang); // 更新 i18n 的语言设置
   };
 
   return (
-    <header className={`topbar ${darkMode ? 'dark' : ''}`} style={{ backgroundColor: themeColor }}>
+    <Header className={`topbar ${darkMode ? 'dark' : ''}`}>
       <div className="logo">
-        <img src={logo} alt="Logo" className="logo-image" /> {/* 替换成你自己的Logo */}
-        <h1 className="title">LoveLedger</h1>
+        <img src={logo} alt="Logo" className="logo-image" />
+        <Title level={3} className="title">{t('LoveLedger')}</Title>
       </div>
-      <nav className="navigation">
-        <ul>
-          <li><Link to="/">主页</Link></li>
-          <li><Link to="/confess">表白</Link></li>
-          <li><Link to="/respond_confession">回应表白</Link></li>
-          <li><Link to="/proposal_marriage">求婚</Link></li>
-          <li><Link to="/respond_marriage">回应求婚</Link></li>
-          <li><Link to="/love_credit/0xAddress">爱情信用</Link></li>
-          <li><Link to="/confessions_history">表白历史</Link></li>
-          <li><Link to="/marriage_history">求婚历史</Link></li>
-          <li><Link to="/about">关于我们</Link></li>
-        </ul>
-      </nav>
+      <Menu theme={darkMode ? 'dark' : 'light'} mode="horizontal" className="navigation">
+        <Menu.Item key="home"><Link to="/">{t('主页')}</Link></Menu.Item>
+        <Menu.Item key="confess"><Link to="/confess">{t('表白')}</Link></Menu.Item>
+        <Menu.Item key="respond_confession"><Link to="/respond_confession">{t('回应表白')}</Link></Menu.Item>
+        <Menu.Item key="proposal_marriage"><Link to="/proposal_marriage">{t('求婚')}</Link></Menu.Item>
+        <Menu.Item key="respond_marriage"><Link to="/respond_marriage">{t('回应求婚')}</Link></Menu.Item>
+        <Menu.Item key="love_credit"><Link to="/love_credit">{t('爱情信用')}</Link></Menu.Item>
+        <Menu.Item key="confessions_history"><Link to="/confessions_history">{t('表白历史')}</Link></Menu.Item>
+        <Menu.Item key="marriages_history"><Link to="/marriages_history">{t('求婚历史')}</Link></Menu.Item>
+        <Menu.Item key="about"><Link to="/about">{t('关于我们')}</Link></Menu.Item>
+      </Menu>
       <div className="controls">
-        {/* <button onClick={toggleDarkMode} className="btn-darkmode">
-          {darkMode ? '亮色模式' : '暗色模式'}
-        </button> */}
-        {/* <div className="theme-color">
-          <button onClick={() => handleThemeColorChange('#ff6b6b')} style={{ backgroundColor: '#ff6b6b' }}></button>
-          <button onClick={() => handleThemeColorChange('#ffd700')} style={{ backgroundColor: '#ffd700' }}></button>
-          <button onClick={() => handleThemeColorChange('#1e90ff')} style={{ backgroundColor: '#1e90ff' }}></button>
-        </div> */}
-        <select value={language} onChange={(e) => handleLanguageChange(e.target.value)} className="language-selector">
-          <option value="en">English</option>
-          <option value="zh">中文</option>
-        </select>
+        <div className="language-selector">
+          <Select
+            value={language}
+            onChange={handleLanguageChange}
+            className="language-dropdown"
+            style={{ width: 120 }}
+          >
+            <Option value="en">{t('English')}</Option>
+            <Option value="zh">{t('中文')}</Option>
+          </Select>
+        </div>
+        <div className="dark-mode-toggle">
+          <span>{darkMode ? t('暗色模式') : t('亮色模式')}</span>
+          <Switch checked={darkMode} onChange={toggleDarkMode} />
+        </div>
       </div>
-    </header>
+    </Header>
   );
 };
 

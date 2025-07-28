@@ -15,7 +15,7 @@ i18n
       en: en,  // 英文翻译
       zh: zh,  // 中文翻译
     },
-    lng: 'en', // 默认语言
+    lng: 'zh', // 默认语言
     fallbackLng: 'en', // 后备语言
     interpolation: {
       escapeValue: false, // React 已经自动进行转义

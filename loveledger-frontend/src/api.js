@@ -73,3 +73,9 @@ export const verifyIdentity = async () => {
   const response = await axios.get(`${BASE_URL}/verify_identity`);
   return response.data;
 };
+
+// 获取通讯信息
+export const getContactInfo = async (address) => {
+  const response = await axios.get(`${BASE_URL}/contact_info`);
+  return response.data;
+};

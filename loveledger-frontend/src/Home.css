@@ -8,11 +8,56 @@
 body {
   font-family: 'Arial', sans-serif;
   animation: gradientAnimation 5s infinite alternate; /* 动画设置 */
-  background-color: white; /* 背景颜色改为白色 */
-  color: black; /* 文字颜色改为黑色 */
+  background-color: white; /* 默认背景颜色为白色（亮模式） */
+  color: black; /* 默认文字颜色为黑色（亮模式） */
   background-size: 1000% 1000%;
+  transition: background-color 0.3s ease, color 0.3s ease; /* 添加平滑过渡 */
 }
 
+/* 默认（亮模式） */
+body {
+  background-color: white; /* 背景颜色为白色 */
+  color: black; /* 文字颜色为黑色 */
+}
+
+/* 当 body 包含 dark-mode 类时，表示暗模式 */
+body.dark-mode {
+  background-color: #121212; /* 背景颜色为暗模式黑色 */
+  color: white; /* 文字颜色为白色 */
+}
+
+/* 按钮样式 */
+.btn {
+  padding: 12px 25px;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+/* 亮模式按钮 */
+body:not(.dark-mode) .btn {
+  background-color: #007bff; /* 亮模式按钮背景颜色 */
+  color: white; /* 按钮文字颜色 */
+}
+
+body:not(.dark-mode) .btn:hover {
+  background-color: #0056b3; /* 亮模式下按钮悬停效果 */
+}
+
+/* 暗模式按钮 */
+body.dark-mode .btn {
+  background-color: #1a73e8; /* 暗模式按钮背景颜色 */
+  color: white; /* 按钮文字颜色 */
+}
+
+body.dark-mode .btn:hover {
+  background-color: #1565c0; /* 暗模式下按钮悬停效果 */
+}
+
+/* 动画效果 */
 @keyframes gradientAnimation {
   0% {
     background-position: 0% 50%;
@@ -25,40 +70,6 @@ body {
   }
 }
 
-/* 顶部导航栏 */
-.navbar {
-  background-color: white; /* 背景颜色改为白色 */
-  color: black; /* 文字颜色改为黑色 */
-  padding: 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.navbar h1 {
-  font-size: 2rem;
-}
-
-.navbar nav ul {
-  display: flex;
-  list-style: none;
-}
-
-.navbar nav ul li {
-  margin-left: 20px;
-}
-
-.navbar nav ul li a {
-  color: black; /* 文字颜色改为黑色 */
-  text-decoration: none;
-  font-size: 1rem;
-  transition: color 0.3s ease;
-}
-
-.navbar nav ul li a:hover {
-  color: gray; /* 悬停时变为灰色 */
-}
-
 /* 中央内容区域 */
 .content {
   text-align: center;
@@ -68,48 +79,26 @@ body {
 .content h2 {
   font-size: 2.5rem;
   margin-bottom: 20px;
-  color: black; /* 文字颜色改为黑色 */
 }
 
 .content p {
   font-size: 1.2rem;
   line-height: 1.8;
   margin-bottom: 30px;
-  color: black; /* 文字颜色改为黑色 */
 }
 
-.buttons {
-  display: flex;
-  justify-content: center;
-  gap: 30px;
+/* 响应式布局 */
+@media (max-width: 768px) {
+  .content h2 {
+    font-size: 2rem; /* 小屏幕下减小字体 */
+  }
+
+  .content p {
+    font-size: 1rem; /* 小屏幕下减小段落字体 */
+  }
+
+  .buttons {
+    flex-direction: column; /* 小屏幕下按钮垂直排列 */
+    gap: 15px;
+  }
 }
-
-.btn {
-  padding: 12px 25px;
-  font-size: 1rem;
-  font-weight: bold;
-  border-radius: 5px;
-  transition: background-color 0.3s ease;
-}
-
-.btn-primary {
-  background-color: black; /* 按钮背景颜色改为黑色 */
-  color: white; /* 按钮文字颜色改为白色 */
-  border: none;
-}
-
-.btn-primary:hover {
-  background-color: #555; /* 悬停时按钮变为深灰色 */
-}
-
-.btn-secondary {
-  background-color: black; /* 按钮背景颜色改为黑色 */
-  color: white; /* 按钮文字颜色改为白色 */
-  border: none;
-}
-
-.btn-secondary:hover {
-  background-color: #777; /* 悬停时按钮变为中灰色 */
-}
-
-

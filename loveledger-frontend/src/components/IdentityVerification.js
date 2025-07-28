@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { verifyIdentity } from '../api';
+import { useTranslation } from 'react-i18next';
 
 /**
  * 身份验证组件
@@ -10,6 +11,7 @@ import { verifyIdentity } from '../api';
  */
 const IdentityVerification = () => {
   const [address, setAddress] = useState(null);
+  const { t } = useTranslation();
 
   useEffect(() => {
     const fetchIdentity = async () => {
@@ -28,9 +30,9 @@ const IdentityVerification = () => {
     <div>
       <h2>身份验证</h2>
       {address ? (
-        <p>当前部署者公钥地址：{address}</p>
+        <p>{t('当前部署者公钥地址：{address}')}</p>
       ) : (
-        <p>验证中...</p>
+        <p>{t('验证中...')}</p>
       )}
     </div>
   );

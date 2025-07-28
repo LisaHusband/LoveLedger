@@ -44,6 +44,10 @@ PRIVATE_KEY = os.getenv("PRIVATE_KEY")
 ACCOUNT_ADDRESS = os.getenv("ACCOUNT_ADDRESS")
 CONTRACT_ADDRESS = Web3.to_checksum_address(os.getenv("CONTRACT_ADDRESS"))
 
+# 获取联系方式
+CONTACT_EMAIL = os.getenv("CONTACT_EMAIL")
+CONTACT_BY_DISCORD = os.getenv("CONTACT_BY_DISCORD")
+CONTACT_GITHUB_REPO = os.getenv("CONTACT_GITHUB_REPO")
 
 # 连接节点
 web3 = Web3(Web3.HTTPProvider(ALCHEMY_API_URL))
@@ -91,7 +95,7 @@ def send_transaction(fn_call, from_address, private_key):
     tx_receipt = web3.eth.wait_for_transaction_receipt(tx_hash)
 
     # Log the transaction receipt for debugging purposes
-    app.logger.info(f"Transaction receipt: {tx_receipt}")
+    # app.logger.info(f"Transaction receipt: {tx_receipt}")
 
     # Return the transaction hash and receipt
     return web3.to_hex(tx_hash), tx_receipt
@@ -210,7 +214,7 @@ def respond_confession():
     from_address = data.get("from")
     private_key = data.get("private_key")
     confession_id = int(data.get("confession_id"))
-    accept = data.get("accept")
+    accept = bool(data.get("accept"))
 
     if not all([from_address, private_key]) or confession_id is None or accept is None:
         return jsonify({"error": "缺少必要字段"}), 400
@@ -287,7 +291,7 @@ def respond_marriage():
     from_address = data.get("from")
     private_key = data.get("private_key")
     marriage_id = int(data.get("marriage_id"))
-    accept = data.get("accept")
+    accept = bool(data.get("accept"))
 
     if not all([from_address, private_key]) or marriage_id is None or accept is None:
         return jsonify({"error": "缺少必要字段"}), 400
@@ -397,6 +401,16 @@ def get_love_credit(address):
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
+# 获取联系方式
+@app.route("/contact_info", methods=["GET"])
+def get_contact_info():
+    """获取联系方式"""
+    contact_info = {
+        "email": CONTACT_EMAIL,
+        "discord": CONTACT_BY_DISCORD,
+        "github_repo": CONTACT_GITHUB_REPO
+    }
+    return jsonify(contact_info), 200
 
 # 获取账户地址（验证身份）
 @app.route("/verify_identity", methods=["GET"])

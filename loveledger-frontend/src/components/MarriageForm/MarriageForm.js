@@ -1,22 +1,22 @@
 import React, { useState } from 'react';
 import { Input, Button, Form, Typography, Card, Spin, Space } from 'antd'; // 导入 Ant Design 组件
-import { sendConfession } from '../../api';
-import './ConfessForm.css'; 
+import { registerMarriage } from '../../api';  // 导入 API 请求函数
+import './MarriageForm.css';  // 引入样式文件
 import { useTranslation } from 'react-i18next';
 
 const { Title } = Typography;
 
-const ConfessForm = () => {
-  const { t } = useTranslation();
+const MarriageForm = () => {
   const [response, setResponse] = useState(null);
   const [loading, setLoading] = useState(false);  // 控制加载状态
 
+  const { t } = useTranslation();
+
   const handleFinish = async (values) => {
-    // values 会自动包含所有输入框的值
-    const { from, privateKey, to, title, message } = values;
+    const { from, privateKey, partner } = values;
     setLoading(true); // 开始加载
     try {
-      const result = await sendConfession(from, privateKey, to, title, message);
+      const result = await registerMarriage(from, privateKey, partner);
       setResponse(result);
     } catch (error) {
       setResponse(error);
@@ -27,14 +27,15 @@ const ConfessForm = () => {
   };
 
   return (
-    <div className="confess-form-container">
-      <Title level={2}>{t('表白')}</Title>
+    <div className="marriage-form-container">
+      <Title level={2}>{t('求婚')}</Title>
       {/* 显示加载动画 */}
       {loading && (
         <div className="loading-overlay">
-          <Spin size="large" />{t('')}</div>
+          <Spin size="large" />
+        </div>
       )}
-      <Form onFinish={handleFinish} className="confess-form">
+      <Form onFinish={handleFinish} className="marriage-form">
         <Form.Item
           name="from"
           rules={[{ required: true, message: t('请输入发送方地址!') }]}
@@ -45,62 +46,51 @@ const ConfessForm = () => {
           name="privateKey"
           rules={[{ required: true, message: t('请输入私钥!') }]}
         >
-          <Input.Password placeholder="私钥" className="input-field" />
+          <Input.Password placeholder={t("私钥")} className="input-field" />
         </Form.Item>
         <Form.Item
-          name="to"
-          rules={[{ required: true, message: t('请输入接收方地址!') }]}
+          name="partner"
+          rules={[{ required: true, message: t('请输入配偶地址!') }]}
         >
-          <Input placeholder={t("接收方")} className="input-field" />
-        </Form.Item>
-        <Form.Item
-          name="title"
-          rules={[{ required: true, message: t('请输入表白标题!') }]}
-        >
-          <Input placeholder={t("表白标题")} className="input-field" />
-        </Form.Item>
-        <Form.Item
-          name="message"
-          rules={[{ required: true, message: t('请输入表白信息!') }]}
-        >
-          <Input.TextArea placeholder={t("表白信息")} className="input-field" />
+          <Input placeholder={t("配偶")} className="input-field" />
         </Form.Item>
         <Form.Item>
           <Button
             type="default"
             htmlType="submit"
             className="submit-button"
-             loading={loading} // 按钮的加载状态
-          >{t('提交表白')}</Button>
+            loading={loading} // 按钮的加载状态
+          >{t('提交求婚')}
+          </Button>
         </Form.Item>
       </Form>
       {response && (
         <div className="response-container">
-          <Title level={4}>{t('表白响应')}</Title>
+          <Title level={4}>{t('求婚响应')}</Title>
           
           {/* 使用 Card 来展示响应数据 */}
           <Card
-            title={t("表白成功！")}
+            title={t("求婚成功！")}
             bordered={false}
             style={{ width: '100%', marginTop: 20 }}
             className="response-card"
           >
             <Space direction="vertical" style={{ width: '100%' }}>
               <div>
-                <strong>{t('表白信息 ID:')}</strong> {response.confession_id}
+                <strong>{t('求婚信息 ID:')}</strong> {response.marriage_id}
               </div>
               <div>
                 <strong>{t('交易哈希:')}</strong> <a href={`https://etherscan.io/tx/${response.tx_hash}`} target="_blank" rel="noopener noreferrer">{t('{response.tx_hash}')}</a>
               </div>
               <div>
-                <strong>{t('现在你可以将ID作为你们的定情信物交给对方，对方会选择接受还是拒绝或者忽略')}</strong>
-              </div>{t('')}
+                <strong>{t('现在你可以将ID作为你们的订婚信物交给对方，对方会选择接受还是拒绝或者忽略')}</strong>
+              </div>
             </Space>
-          </Card>{t('')}
+          </Card>
         </div>
       )}
     </div>
   );
 };
 
-export default ConfessForm;
+export default MarriageForm;

@@ -1,32 +1,26 @@
 /* TopBar.css */
 
-/* 基本布局 */
+/* 整体布局 */
 .topbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 20px;
-  animation: gradientAnimation 5s infinite alternate; /* 动画设置 */
-  background: white; /* 背景色改为白色 */
-  color: black; /* 文字颜色改为黑色 */
-  transition: background-color 0.3s ease;
-  background-size: 400% 400%;
-}
-@keyframes gradientAnimation {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
+  padding: 0 20px;
+  background-color: #ffffff;
+  position: relative;
 }
 
 .topbar.dark {
-  background-color: #333; /* 暗黑模式下的背景 */
-  color: white; /* 暗黑模式下的文字 */
+  background-color: #333333; /* 暗色模式背景 */
+}
+
+/* logo 和标题容器 */
+.logo-title-container {
+  display: flex;
+  justify-content: flex-start; /* logo 和 title 对齐左边 */
+  flex: 1;
+  position: absolute;
+  left: 20px;
 }
 
 .logo {
@@ -41,70 +35,89 @@
 }
 
 .title {
-  font-size: 1.5rem;
-  font-weight: bold;
-  margin: 0;
-  color: black; /* 标题文字为黑色 */
+  color: #000000;
 }
 
-.navigation ul {
-  display: flex;
-  list-style: none;
+.topbar.dark .title {
+  color: #ffffff;
 }
 
-.navigation li {
-  margin-left: 20px;
+/* 中心标题 */
+.navigation {
+  /* background-color: #bababa; */
+  flex-grow: 1;
+  text-align: center;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%); /* 让导航栏居中 */
 }
 
-.navigation a {
-  color: black; /* 导航链接颜色改为黑色 */
-  text-decoration: none;
-  font-size: 1rem;
-  transition: color 0.3s ease;
+.navigation .ant-menu-item {
+  font-size: 16px;
 }
 
-.navigation a:hover {
-  color: gray; /* 悬停时改为灰色 */
-}
 
 .controls {
   display: flex;
   align-items: center;
-  gap: 15px;
+  gap: 20px;
+  justify-content: flex-end;
 }
 
-.btn-darkmode {
-  padding: 8px 12px;
-  background-color: transparent;
-  color: black; /* 按钮文本颜色改为黑色 */
-  border: 1px solid black; /* 按钮边框颜色改为黑色 */
+.language-selector .ant-select-selector {
+  background-color: #ffffff;
   border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+  border: 1px solid #ccc;
 }
 
-.btn-darkmode:hover {
-  background-color: lightgray; /* 暗模式按钮悬停时变为浅灰色 */
+.language-dropdown {
+  font-size: 14px;
 }
 
-.theme-color button {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  border: 1px solid black; /* 按钮边框颜色改为黑色 */
-  cursor: pointer;
-  background-color: white; /* 按钮背景色改为白色 */
+.dark-mode-toggle {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 14px;
 }
 
-.theme-color button:hover {
-  background-color: #d3d3d3; /* 按钮悬停时变为浅灰色 */
+/* 调整暗色模式下的菜单颜色 */
+.topbar.dark .ant-menu-dark .ant-menu-item {
+  color: #ffffff;
+  background-color: #333333;
 }
 
-.language-selector {
-  padding: 5px 10px;
-  font-size: 1rem;
-  background-color: transparent;
-  color: black; /* 语言选择器文本颜色改为黑色 */
-  border: 1px solid black; /* 边框颜色改为黑色 */
-  border-radius: 5px;
+.topbar.dark .ant-menu-dark .ant-menu-item:hover {
+  color: #9d9d9d;
 }
+
+.topbar.dark .ant-menu-dark .ant-menu-item-selected {
+  color: #ffffff;
+  background-color: #000000;
+  border-bottom: none;  /* 移除底部横线 */
+}
+
+/* 调整亮色模式下的菜单颜色 */
+.topbar .ant-menu .ant-menu-item {
+  color: #000000;
+  background-color: #ffffff;
+  transition: background-color 0.3s ease, color 0.3s ease; /* 背景和文字颜色同步过渡 */
+}
+
+.topbar .ant-menu .ant-menu-item::after {
+  border-bottom: none;  /* 移除底部横线 */
+}
+
+.topbar .ant-menu .ant-menu-item:hover {
+  color: #ffffff !important;
+  background-color: #000000;
+}
+
+
+
+.topbar .ant-menu .ant-menu-item-selected {
+  color: #ffffff;
+  background-color: #000000;
+}
+
+

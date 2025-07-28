@@ -11,4 +11,11 @@
 
 .footer p {
   font-size: 1rem;
+  margin: 0;  /* 去除默认的段落外边距 */
+}
+
+/* 暗色模式 */
+.footer.dark {
+  background-color: #333333; /* 暗色模式背景 */
+  color: white; /* 暗色模式文字颜色 */
 }
