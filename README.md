@@ -15,12 +15,12 @@ Every confession, proposal, or marriage information is recorded on-chain to ensu
 
 ---
 
-## Core Features (Currently only supports the deployer to express love to others)
+## Core Features (Currently only supports Sepolia Network)
 
 * 💌 **On-chain Confessions & Proposals** — Record your love vows that never fade.
 * 🎉 **On-chain Blessings** — Receive blessings and support from users worldwide.(planning)
 * 💍 **Marriage Registration** — Witness the permanent commitment of love.
-* 📊 **Loyalty Score** — Build a couple’s credit rating through interactions and on-chain behavior.(planning)
+* 📊 **Loyalty Score** — Build a couple’s credit rating through interactions and on-chain behavior.
 * 🔍 **Public Records Query** — Transparent and publicly accessible love records browsing and search.
 * 🔐 **Decentralized Identity** — Secure identity verification based on wallet addresses.
 
