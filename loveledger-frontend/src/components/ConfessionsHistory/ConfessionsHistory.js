@@ -3,7 +3,7 @@ import { Input, Button, Form, Typography, Card, Spin, Space } from 'antd'; // �
 import { getConfessionsHistory } from '../../api';
 import moment from 'moment';  // 引入 moment 来格式化时间
 import './ConfessionsHistory.css'; // 引入样式文件
-import { useTranslation } from 'react-i18next';
+import { useIntl } from 'react-intl'; // 引入 React Intl
 
 const { Title } = Typography;
 
@@ -13,7 +13,7 @@ const ConfessionsHistory = () => {
   const [loading, setLoading] = useState(false);  // 控制加载状态
   const [response, setResponse] = useState(null);
 
-  const { t } = useTranslation();
+  const intl = useIntl();  // 获取intl对象
 
   const handleSubmit = async (values) => {
     const { address } = values;
@@ -32,19 +32,22 @@ const ConfessionsHistory = () => {
 
   return (
     <div className="confessions-history-container">
-      <Title level={2}>{t('查询表白历史')}</Title>
+      <Title level={2}>{intl.formatMessage({ id: '查询表白历史' })}</Title>
+
       {/* 显示加载动画 */}
       {loading && (
         <div className="loading-overlay">
-          <Spin size="large" />{t('')}</div>
+          <Spin size="large" />
+        </div>
       )}
+      
       <Form onFinish={handleSubmit} className="confessions-form">
         <Form.Item
           name="address"
-          rules={[{ required: true, message: t('请输入地址!') }]}
+          rules={[{ required: true, message: intl.formatMessage({ id: '请输入地址!' }) }]}
         >
           <Input
-            placeholder={t("输入地址查询表白历史")}
+            placeholder={intl.formatMessage({ id: '输入地址查询表白历史' })}
             className="input-field"
             value={address}
             onChange={(e) => setAddress(e.target.value)}
@@ -56,56 +59,61 @@ const ConfessionsHistory = () => {
             htmlType="submit"
             className="submit-button"
             loading={loading} // 按钮的加载状态
-          >{t('查询表白历史')}</Button>
-        </Form.Item>{t('')}</Form>
+          >
+            {intl.formatMessage({ id: '查询表白历史' })}
+          </Button>
+        </Form.Item>
+      </Form>
 
       {/* 展示响应 */}
       {response && (
         <div className="response-container">
-          <Title level={4}>{t('查询响应')}</Title>
+          <Title level={4}>{intl.formatMessage({ id: '查询响应' })}</Title>
           <Card
-            title={t("查询失败")}
+            title={intl.formatMessage({ id: "查询失败" })}
             bordered={false}
             style={{ width: '100%', marginTop: 20 }}
             className="response-card"
           >
             <Space direction="vertical" style={{ width: '100%' }}>
               <div>
-                <strong>{t('错误信息:')}</strong> {response.message}
-              </div>{t('')}</Space>
-          </Card>{t('')}</div>
+                <strong>{intl.formatMessage({ id: '错误信息:' })}</strong> {response.message}
+              </div>
+            </Space>
+          </Card>
+        </div>
       )}
 
       {/* 展示表白历史 */}
       {confessions.length > 0 && !loading && (
         <div className="confessions-history-list">
-          <Title level={3}>{t('表白历史')}</Title>
+          <Title level={3}>{intl.formatMessage({ id: '表白历史' })}</Title>
           {confessions.map((confession, index) => (
             <Card
               key={index}
-              title={t(`表白 ID: 默认隐藏`)}
+              title={intl.formatMessage({ id: '表白 ID: 默认隐藏' })}
               bordered={false}
               style={{ marginBottom: 16 }}
             >
               <Space direction="vertical" style={{ width: '100%' }}>
                 <div>
-                  <strong>{t('表白标题:')}</strong> {confession.title}
+                  <strong>{intl.formatMessage({ id: '表白标题:' })}</strong> {confession.title}
                 </div>
                 <div>
-                  <strong>{t('表白信息:')}</strong> {confession.message}
+                  <strong>{intl.formatMessage({ id: '表白信息:' })}</strong> {confession.message}
                 </div>
                 <div>
-                  <strong>{t('发送方:')}</strong> {confession.sender}
+                  <strong>{intl.formatMessage({ id: '发送方:' })}</strong> {confession.sender}
                 </div>
                 <div>
-                  <strong>{t('接收方:')}</strong> {confession.receiver}
+                  <strong>{intl.formatMessage({ id: '接收方:' })}</strong> {confession.receiver}
                 </div>
                 <div>
-                  <strong>{t('表白状态:')}</strong> {confession.status === 0 ? t('未接受') : t('已接受')}
+                  <strong>{intl.formatMessage({ id: '表白状态:' })}</strong> {confession.status === 0 ? intl.formatMessage({ id: '未接受' }) : intl.formatMessage({ id: '已接受' })}
                 </div>
                 <div>
-                  <strong>{t('时间:')}</strong> {moment.unix(confession.timestamp).format('YYYY-MM-DD HH:mm:ss')}
-                </div>{t('')}
+                  <strong>{intl.formatMessage({ id: '时间:' })}</strong> {moment.unix(confession.timestamp).format('YYYY-MM-DD HH:mm:ss')}
+                </div>
               </Space>
             </Card>
           ))}

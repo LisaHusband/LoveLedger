@@ -1,25 +1,34 @@
-// src/i18n.js
+import { createIntl, createIntlCache, RawDateTimeFormat } from 'react-intl';
 
-import i18n from 'i18next';
-import { initReactI18next } from 'react-i18next';
-
-// 引入语言文件
+// 设置语言文件
 import en from './locales/en.json';
 import zh from './locales/zh.json';
 
-// 初始化 i18next
-i18n
-  .use(initReactI18next) // 绑定 react-i18next
-  .init({
-    resources: {
-      en: en,  // 英文翻译
-      zh: zh,  // 中文翻译
-    },
-    lng: 'zh', // 默认语言
-    fallbackLng: 'en', // 后备语言
-    interpolation: {
-      escapeValue: false, // React 已经自动进行转义
-    },
-  });
+const cache = createIntlCache();
 
-export default i18n;
+const messages = {
+  en: en,
+  zh: zh,
+};
+
+const defaultLanguage = 'zh';
+
+let intl = createIntl(
+  {
+    locale: defaultLanguage,
+    messages: messages[defaultLanguage],
+  },
+  cache
+);
+
+export const setIntl = (language) => {
+  intl = createIntl(
+    {
+      locale: language,
+      messages: messages[language],
+    },
+    cache
+  );
+};
+
+export const getIntl = () => intl;
