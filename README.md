@@ -1,4 +1,5 @@
 # LoveLedger — The Immutable Love Ledger on Blockchain
+### **Version: 1.0.0**
 
 # DECLARATION:  **It is aimed at those who are full of high-sounding promises or deceive people under some high-sounding banners.**
 🔁 **[简体中文](README_CN.md)**
