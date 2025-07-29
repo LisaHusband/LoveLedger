@@ -119,3 +119,41 @@
   color: #ffffff;
   background-color: #000000;
 }
+
+/* 自定义溢出项 */
+/* 自定义溢出项 */
+.ant-menu-overflow-item {
+  color: #000000;  /* 默认字体颜色为黑色 */
+  background-color: #ffffff;  /* 默认背景色为白色 */
+  /* border-radius: 5px;  圆角效果 */
+  /* padding: 10px;  内边距 */
+  /* font-size: 14px;  字体大小 */
+  display: inline-block !important; /* 确保它不会被隐藏 */
+  visibility: visible !important; /* 保证它可见 */
+  transition: background-color 0.3s ease, color 0.3s ease; /* 平滑过渡 */
+}
+
+/* 如果溢出项被点击并保持选中状态，确保它不会与背景颜色相同 */
+#root > div > header > ul > li.ant-menu-overflow-item.ant-menu-submenu.ant-menu-submenu-horizontal.ant-menu-submenu-selected > div {
+  color: #ffffff;
+  background-color: #000000;
+}
+
+.topbar.dark #root > div > header > ul > li.ant-menu-overflow-item.ant-menu-submenu.ant-menu-submenu-horizontal.ant-menu-submenu-selected > div {
+  color: #ffffff;
+  background-color: #333333;
+}
+
+#rc-menu-uuid-94488-2-more-popup > li.ant-menu-item.ant-menu-item-selected.ant-menu-item-only-child {
+  color: #ffffff;
+  background-color: #000000;
+}
+
+.topbar.dark .ant-menu-overflow-item{
+  color: #ffffff;
+  background-color: #333333;
+}
+
+
+
+

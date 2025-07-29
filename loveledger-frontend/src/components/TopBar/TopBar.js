@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Layout, Menu, Select, Switch, Typography } from 'antd'; // 引入 Ant Design 组件
+import { MoreOutlined } from '@ant-design/icons';
 import logo from '../../assets/logo.gif';
 import './TopBar.css'; // 引入CSS样式
 import { getIntl } from '../../i18n';
@@ -8,6 +9,7 @@ import { getIntl } from '../../i18n';
 const { Header } = Layout;
 const { Title } = Typography;
 const { Option } = Select;
+const { SubMenu } = Menu;
 
 const TopBar = ({ darkMode, toggleDarkMode, handleLanguageChange }) => {
   const language = getIntl().locale;
@@ -25,9 +27,14 @@ const TopBar = ({ darkMode, toggleDarkMode, handleLanguageChange }) => {
         <Menu.Item key="proposal_marriage"><Link to="/proposal_marriage">{getIntl().messages['求婚']}</Link></Menu.Item>
         <Menu.Item key="respond_marriage"><Link to="/respond_marriage">{getIntl().messages['回应求婚']}</Link></Menu.Item>
         <Menu.Item key="love_credit"><Link to="/love_credit">{getIntl().messages['爱情信用']}</Link></Menu.Item>
+        <SubMenu
+        key="more"
+        title={<span><MoreOutlined /> {getIntl().messages['更多']}</span>}
+      >
         <Menu.Item key="confessions_history"><Link to="/confessions_history">{getIntl().messages['表白历史']}</Link></Menu.Item>
         <Menu.Item key="marriages_history"><Link to="/marriages_history">{getIntl().messages['求婚历史']}</Link></Menu.Item>
         <Menu.Item key="about"><Link to="/about">{getIntl().messages['关于我们']}</Link></Menu.Item>
+      </SubMenu>
       </Menu>
       <div className="controls">
         <div className="language-selector">
