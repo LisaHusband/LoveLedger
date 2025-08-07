@@ -1,4 +1,5 @@
 # LoveLedger — The Immutable Love Ledger on Blockchain
+<img src="https://loveledger.tech/static/media/logo.87f3ae55211ae7314171.gif" width="200" height="200" />
 
 # DECLARATION:  **It is aimed at those who are full of high-sounding promises or deceive people under some high-sounding banners.**
 🔁 **[简体中文](README_CN.md)**
@@ -64,6 +65,8 @@ Please read [CONTRIBUTING.md](doc/CONTRIBUTING.md) for contribution guidelines.
 
 ## Contact
 * Community: [Discord links](https://discord.gg/wnxj7Nea)
+
+
 
 ---
 

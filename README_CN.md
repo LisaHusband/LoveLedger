@@ -1,4 +1,5 @@
 # LoveLedger — 区块链上的“爱情账本”
+<img src="https://loveledger.tech/static/media/logo.87f3ae55211ae7314171.gif" width="200" height="200" />
 
 # 声明：**此项目针对的就是那些满嘴冠冕堂皇的承诺或者打着一些冠冕堂皇的旗号欺骗感情的人**
 
