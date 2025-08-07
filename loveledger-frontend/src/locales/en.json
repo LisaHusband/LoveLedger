@@ -1,6 +1,6 @@
 {
   "欢迎来到 LoveLedger": "Welcome to LoveLedger",
-  "LoveLedger 是一个基于区块链的爱情信任平台，允许用户发起表白、回应表白、进行求婚和回应求婚。": "LoveLedger is a blockchain-based love trust platform that allows users to make confessions, respond to confessions, make marriage proposals, and respond to marriage proposals.",
+  "LoveLedger 是一个基于区块链的爱情信任平台，允许用户发起表白、回应表白、进行求婚和回应求婚。": "LoveLedger is a blockchain platform for love confessions and marriage proposals.",
   "LoveLedger 通过区块链技术确保每一份爱的承诺都有可信的记录。": "LoveLedger ensures that every promise of love is securely recorded through blockchain technology.",
   "官方地址": "Official Address",
   "0xF93AAc54614A568A24Afbb9BD043d15358D2476A": "0xF93AAc54614A568A24Afbb9BD043d15358D2476A",
@@ -109,8 +109,23 @@
   "爱情信用": "Credit",
   "关于我们": "About",
   "English": "English",
-  "中文": "Chinese",
+  "Chinese": "中文",
   "亮色模式": "Light Mode",
   "暗色模式": "Dark Mode",
-  "更多": "More"
+  "更多": "More",
+  "Beta测试说明": "Beta Test Instructions",
+  "Beta测试说明描述": "Currently only supports Sepolia Network. If you find any functional problems, please give feedback via email on the More, About page",
+  "首页标题": "LoveLedger",
+  "关于标题": "About",
+  "表白页标题": "Send Confession",
+  "回应表白标题": "Reply to Confession",
+  "求婚标题": "Propose",
+  "回应求婚标题": "Respond to Proposal",
+  "查询爱情信用标题": "Query Love Credit",
+  "查询求婚历史标题": "Query Marriage Proposal History",
+  "查询表白历史标题": "Query Confession History",
+  "版本号": "System Version 1.0.0",
+  "分享": "Share to",
+  "提示标题": "Warning",
+  "提示内容": "This site is not fully optimized for mobile devices. For the best experience, please visit from a desktop. We are working on improving the mobile experience, thank you for your understanding!"
 }

@@ -19,8 +19,8 @@ import './i18n'
 
 const App = () => {
   const [darkMode, setDarkMode] = useState(false); // 暗亮模式状态
-  const [language, setLanguage] = useState('zh'); // 默认语言为中文
-
+  const [language, setLanguage] = useState('en'); // 默认语言为英文
+  
   // 检测浏览器的亮暗模式预设
   useEffect(() => {
     const prefersDarkScheme = window.matchMedia("(prefers-color-scheme: dark)").matches;
@@ -54,6 +54,7 @@ const App = () => {
       locale={language} // 使用当前语言
       messages={getIntl().messages} // 获取对应的语言资源
     >
+      <link rel="icon" href="favicon.ico" />
       <Router>
         <ConfigProvider theme={themeConfig}>
           <div>

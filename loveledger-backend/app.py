@@ -10,8 +10,9 @@ import logging
 from logging.handlers import RotatingFileHandler
 from flask import g
 
-
+# 从 .env 文件加载环境变量
 load_dotenv()
+
 # 首次启动抽取 ABI
 extract_abi()
 

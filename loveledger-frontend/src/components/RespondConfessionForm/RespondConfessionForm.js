@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Input, Button, Form, Typography, Card, Space, Radio, Spin } from 'antd'; // 引入 Ant Design 组件
 import { respondConfession } from '../../api';
 import './RespondConfessionForm.css'; // 引入样式文件
@@ -28,6 +28,11 @@ const RespondConfessionForm = () => {
       setLoading(false); // 加载完成
     }
   };
+
+  useEffect(() => {
+    // 设置浏览器标签页的标题
+    document.title = intl.formatMessage({ id: '回应表白标题' }); // 使用 React Intl 获取标题
+  }, [intl]);
 
   return (
     <div className="respond-form-container">

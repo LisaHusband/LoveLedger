@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Input, Button, Form, Typography, Card, Space, Radio, Spin } from 'antd'; // 引入 Ant Design 组件
 import { respondMarriage } from '../../api'; // 引入 API
 import './RespondMarriageForm.css'; // 引入样式文件
@@ -28,6 +28,11 @@ const RespondMarriageForm = () => {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    // 设置浏览器标签页的标题
+    document.title = intl.formatMessage({ id: '回应求婚标题' }); // 使用 React Intl 获取标题
+  }, [intl]);
 
   return (
     <div className="respond-marriage-form-container">

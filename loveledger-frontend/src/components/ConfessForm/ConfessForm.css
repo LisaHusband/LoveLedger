@@ -45,7 +45,8 @@
 /* 响应容器样式 */
 .response-container {
   margin-top: 20px;
-  background-color: #f5f5f5;
+  background-color: #333333 !important;
+  color: white ;
   padding: 20px;
   border-radius: 5px;
   width: 100%;
@@ -71,6 +72,13 @@
 .ant-btn:hover, .ant-btn:focus {
   color: rgb(255, 255, 255);
   background-color: #888888;
+}
+
+.response-card {
+  background-color: #333333 !important;
+  color: white;
+  padding: 10px;
+  border-radius: 8px;
 }
 
 /* 加载动画样式 */

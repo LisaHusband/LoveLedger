@@ -8,6 +8,7 @@
   padding: 0 20px;
   background-color: #ffffff;
   position: relative;
+  flex-wrap: wrap; /* 允许换行 */
 }
 
 .topbar.dark {
@@ -26,6 +27,8 @@
 .logo {
   display: flex;
   align-items: center;
+  justify-content: flex-start; /* 使 logo 居左 */
+  flex: 1;
 }
 
 .logo-image {
@@ -34,8 +37,28 @@
   margin-right: 10px;
 }
 
+.language-option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.language-logo {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+  transition: fill 0.3s ease; /* 平滑过渡 */
+}
+
+/* 当处于暗色模式时，图标颜色变为白色 */
+.language-logo.dark-mode {
+  filter: invert(1) brightness(2); /* 反转颜色并增加亮度 */
+}
+
+/* 标题样式 */
 .title {
   color: #000000;
+  font-size: 18px;
 }
 
 .topbar.dark .title {
@@ -44,7 +67,6 @@
 
 /* 中心标题 */
 .navigation {
-  /* background-color: #bababa; */
   flex-grow: 1;
   text-align: center;
   position: absolute;
@@ -55,7 +77,6 @@
 .navigation .ant-menu-item {
   font-size: 16px;
 }
-
 
 .controls {
   display: flex;
@@ -68,6 +89,12 @@
   background-color: #ffffff;
   border-radius: 5px;
   border: 1px solid #ccc;
+}
+
+.topbar.dark .language-selector .ant-select-selector {
+  background-color: #333333;
+  border-radius: 5px;
+  border: 1px solid #212121;
 }
 
 .language-dropdown {
@@ -113,47 +140,21 @@
   background-color: #000000;
 }
 
-
-
 .topbar .ant-menu .ant-menu-item-selected {
   color: #ffffff;
   background-color: #000000;
 }
 
 /* 自定义溢出项 */
-/* 自定义溢出项 */
 .ant-menu-overflow-item {
   color: #000000;  /* 默认字体颜色为黑色 */
   background-color: #ffffff;  /* 默认背景色为白色 */
-  /* border-radius: 5px;  圆角效果 */
-  /* padding: 10px;  内边距 */
-  /* font-size: 14px;  字体大小 */
   display: inline-block !important; /* 确保它不会被隐藏 */
   visibility: visible !important; /* 保证它可见 */
   transition: background-color 0.3s ease, color 0.3s ease; /* 平滑过渡 */
 }
 
-/* 如果溢出项被点击并保持选中状态，确保它不会与背景颜色相同 */
-#root > div > header > ul > li.ant-menu-overflow-item.ant-menu-submenu.ant-menu-submenu-horizontal.ant-menu-submenu-selected > div {
-  color: #ffffff;
-  background-color: #000000;
-}
-
-.topbar.dark #root > div > header > ul > li.ant-menu-overflow-item.ant-menu-submenu.ant-menu-submenu-horizontal.ant-menu-submenu-selected > div {
+.topbar.dark .ant-menu-overflow-item {
   color: #ffffff;
   background-color: #333333;
 }
-
-#rc-menu-uuid-94488-2-more-popup > li.ant-menu-item.ant-menu-item-selected.ant-menu-item-only-child {
-  color: #ffffff;
-  background-color: #000000;
-}
-
-.topbar.dark .ant-menu-overflow-item{
-  color: #ffffff;
-  background-color: #333333;
-}
-
-
-
-

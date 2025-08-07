@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Input, Button, Form, Typography, Card, Spin, Space } from 'antd'; // 引入 Ant Design 组件
 import { getLoveCredit } from '../../api'; // 假设你的 API 请求已配置好
 import './LoveCreditForm.css'; // 引入样式文件
@@ -25,6 +25,11 @@ const LoveCreditForm = () => {
       setLoading(false); // 加载完成
     }
   };
+
+  useEffect(() => {
+    // 设置浏览器标签页的标题
+    document.title = intl.formatMessage({ id: '查询爱情信用标题' });  // 使用 React Intl 获取标题
+  }, [intl]);
 
   return (
     <div className="love-credit-form-container">

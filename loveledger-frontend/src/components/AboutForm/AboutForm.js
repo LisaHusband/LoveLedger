@@ -26,8 +26,9 @@ const AboutForm = () => {
     };
 
     fetchContactInfo();
-  }, [intl]);  // 空的依赖数组确保该请求只会在组件加载时触发一次
-
+    // 设置浏览器标签页的标题
+  document.title = intl.formatMessage({ id: '关于标题' });  // 使用 React Intl 获取标题
+  }, [intl]);
   return (
     <div className="about-page-container">
       <Title level={2}>{intl.formatMessage({ id: "关于本项目" })}</Title>

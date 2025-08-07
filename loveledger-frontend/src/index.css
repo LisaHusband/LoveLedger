@@ -11,3 +11,61 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+/* Mobile Devices (<= 768px) */
+@media (max-width: 768px) {
+  .App {
+    padding: 10px;
+    flex-direction: column; /* 让布局变成竖向堆叠 */
+    max-width: 100%;
+  }
+
+  section {
+    flex: 1 1 100%; /* 每个表单项占满100%宽度 */
+    min-width: 0; /* 移除最小宽度限制 */
+    margin: 5px 0; /* 更小的边距 */
+  }
+
+  input, textarea, button {
+    width: 100%;
+    padding: 8px; /* 减小内边距 */
+  }
+
+  h1, h2 {
+    font-size: 20px; /* 调整字体大小 */
+  }
+
+  h3 {
+    font-size: 18px;
+  }
+
+  ul li {
+    font-size: 14px; /* 调整列表字体大小 */
+  }
+}
+
+/* Tablet Devices (768px < width <= 1024px) */
+@media (max-width: 1024px) and (min-width: 769px) {
+  .App {
+    padding: 15px;
+    max-width: 90%;
+  }
+
+  section {
+    flex: 1 1 48%; /* 每个表单项占 48% 的宽度 */
+    margin: 10px;
+  }
+
+  input, textarea, button {
+    width: 100%;
+    padding: 10px;
+  }
+
+  h1, h2 {
+    font-size: 24px; /* 平板设备调整字体大小 */
+  }
+
+  ul li {
+    font-size: 16px;
+  }
+}

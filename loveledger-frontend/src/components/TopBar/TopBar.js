@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Layout, Menu, Select, Switch, Typography } from 'antd'; // 引入 Ant Design 组件
 import { MoreOutlined } from '@ant-design/icons';
 import logo from '../../assets/logo.gif';
+import lsvg from '../../assets/language-solid-full.svg';
 import './TopBar.css'; // 引入CSS样式
 import { getIntl } from '../../i18n';
 
@@ -18,7 +19,7 @@ const TopBar = ({ darkMode, toggleDarkMode, handleLanguageChange }) => {
     <Header className={`topbar ${darkMode ? 'dark' : ''}`}>
       <div className="logo">
         <img src={logo} alt="Logo" className="logo-image" />
-        <Title level={3} className="title">{getIntl().messages['LoveLedger']}</Title>
+        <Title level={3} className="title">{getIntl().messages['LoveLedger']}(Beta)</Title>
       </div>
       <Menu theme={darkMode ? 'dark' : 'light'} mode="horizontal" className="navigation">
         <Menu.Item key="home"><Link to="/">{getIntl().messages['主页']}</Link></Menu.Item>
@@ -44,8 +45,26 @@ const TopBar = ({ darkMode, toggleDarkMode, handleLanguageChange }) => {
             className="language-dropdown"
             style={{ width: 120 }}
           >
-            <Option value="en">{getIntl().messages['English']}</Option>
-            <Option value="zh">{getIntl().messages['中文']}</Option>
+            <Option value="en">
+              <div className="language-option">
+                <img
+                  src={lsvg} // 替换成正确的图片路径
+                  alt="Language Logo"
+                  className={`language-logo ${darkMode ? 'dark-mode' : ''}`}
+                />
+                <span>{getIntl().messages['English']}</span>
+              </div>
+            </Option>
+            <Option value="zh">
+              <div className="language-option">
+                <img
+                  src={lsvg} // 替换成正确的图片路径
+                  alt="Language Logo"
+                  className={`language-logo ${darkMode ? 'dark-mode' : ''}`}
+                />
+                <span>{getIntl().messages['Chinese']}</span>
+              </div>
+            </Option>
           </Select>
         </div>
         <div className="dark-mode-toggle">

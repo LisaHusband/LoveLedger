@@ -1,21 +1,53 @@
-/* 页脚 */
 .footer {
-  background-color: white; /* 背景颜色改为白色 */
-  color: black; /* 文字颜色改为黑色 */
-  text-align: center;
+  background-color: white;
+  color: black;
   padding: 20px;
   position: fixed;
   width: 100%;
   bottom: 0;
 }
 
-.footer p {
-  font-size: 1rem;
-  margin: 0;  /* 去除默认的段落外边距 */
+.footer.dark {
+  background-color: #333333;
+  color: white;
 }
 
-/* 暗色模式 */
-.footer.dark {
-  background-color: #333333; /* 暗色模式背景 */
-  color: white; /* 暗色模式文字颜色 */
+/* 样式容器：左右分布 */
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
 }
+
+/* 左侧：社交图标 */
+.social-icons {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.social-icons a {
+  color: inherit;
+  font-size: 1.8rem; /* 放大图标 */
+  transition: transform 0.3s, color 0.3s;
+}
+
+.social-icons a:hover {
+  transform: scale(1.3);
+}
+
+.footer.dark .social-icons a:hover {
+  color: #1da1f2;
+}
+
+.footer:not(.dark) .social-icons a:hover {
+  color: #0077b5;
+}
+
+/* 右侧：版权文字 */
+.footer-text {
+  font-size: 2.8rem;
+  text-align: right;
+}
+

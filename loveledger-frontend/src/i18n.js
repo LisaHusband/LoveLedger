@@ -1,4 +1,4 @@
-import { createIntl, createIntlCache, RawDateTimeFormat } from 'react-intl';
+import { createIntl, createIntlCache} from 'react-intl';
 
 // 设置语言文件
 import en from './locales/en.json';
@@ -11,7 +11,7 @@ const messages = {
   zh: zh,
 };
 
-const defaultLanguage = 'zh';
+const defaultLanguage = 'en';
 
 let intl = createIntl(
   {

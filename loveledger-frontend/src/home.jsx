@@ -24,7 +24,10 @@ const Home = () => {
       }
     };
     fetchOperatorAddress();
-  }, []);
+  
+    // 设置浏览器标签页的标题
+  document.title = intl.formatMessage({ id: '首页标题' });  // 使用 React Intl 获取标题
+  }, [intl]);
 
   return (
     <div className="home-container">
@@ -46,6 +49,11 @@ const Home = () => {
           
           <Card title={intl.formatMessage({ id: '当前运营者地址' })} bordered={false} className="address-card">
             {loading ? <Spin size="small" /> : <Text>{operatorAddress || intl.formatMessage({ id: 'noAddress' })}</Text>}
+          </Card>
+
+          {/* 显示Beta测试说明，如发现有功能问题，请在更多，关于页面通过邮箱进行反馈 */}
+          <Card title={intl.formatMessage({ id: 'Beta测试说明' })} bordered={false} className="address-card">
+            <Text>{intl.formatMessage({ id: 'Beta测试说明描述' })}</Text>
           </Card>
         </div>
       </main>

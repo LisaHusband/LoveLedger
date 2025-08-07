@@ -70,3 +70,48 @@ ul li {
   color: green;
   margin-top: 20px;
 }
+
+.notification {
+  position: fixed;
+  top: 50%;  /* 纵向居中 */
+  left: 50%;  /* 横向居中 */
+  transform: translate(-50%, -50%);  /* 精确居中 */
+  background-color: #ffffff;
+  color: #333333;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  width: 80%;
+  max-width: 400px;
+  transition: background-color 0.3s, color 0.3s;  /* 动画过渡效果 */
+}
+
+/* 暗模式 */
+body.dark-mode .notification {
+  background-color: #333333;
+  color: #ffffff;
+}
+
+.notification-message {
+  font-size: 18px;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.notification-close {
+  background: transparent;
+  border: none;
+  color: inherit;
+  font-size: 20px;
+  cursor: pointer;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+/* 提示框的按钮样式 */
+.notification-close:hover {
+  color: #ff4d4f;  /* Hover 时颜色变为红色 */
+}
+

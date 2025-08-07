@@ -1,6 +1,7 @@
 import axios from 'axios';
 
-const BASE_URL = 'http://localhost:5000'; // 后端API的地址
+// const BASE_URL = 'http://localhost:5000'; // 后端API的地址
+const BASE_URL = 'https://loveledger.tech/api';
 
 // 请求表白
 export const sendConfession = async (from, privateKey, to, title, message) => {

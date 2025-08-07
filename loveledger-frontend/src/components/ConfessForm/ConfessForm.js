@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Input, Button, Form, Typography, Card, Spin, Space } from 'antd'; // 导入 Ant Design 组件
 import { sendConfession } from '../../api';
 import './ConfessForm.css'; 
@@ -10,6 +10,7 @@ const ConfessForm = () => {
   const intl = getIntl(); // 获取当前的 intl 配置
   const [response, setResponse] = useState(null);
   const [loading, setLoading] = useState(false);  // 控制加载状态
+
 
   const handleFinish = async (values) => {
     // values 会自动包含所有输入框的值
@@ -26,13 +27,18 @@ const ConfessForm = () => {
     }
   };
 
+  useEffect(() => {
+    // 设置浏览器标签页的标题
+    document.title = intl.formatMessage({ id: '表白页标题' });  // 使用 React Intl 获取标题
+  }, [intl]);
+
   return (
-    <div className="confess-form-container">
+    <div className="confess-form-container" >
       <Title level={2}>{intl.formatMessage({ id: '表白' })}</Title>
       {/* 显示加载动画 */}
       {loading && (
         <div className="loading-overlay">
-          <Spin size="large" />{intl.formatMessage({ id: '加载中' })}
+          <Spin size="large" />
         </div>
       )}
       <Form onFinish={handleFinish} className="confess-form">

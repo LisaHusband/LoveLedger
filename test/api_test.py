@@ -10,7 +10,8 @@ FROM_ADDRESS = os.getenv("FROM_ADDRESS")
 TO_ADDRESS = os.getenv("TO_ADDRESS")
 FROM_PRIVATE_KEY = os.getenv("FROM_PRIVATE_KEY")
 TO_PRIVATE_KEY = os.getenv("TO_PRIVATE_KEY")
-BACKEND_URL = os.getenv("BACKEND_URL", "http://localhost:5000")
+BACKEND_HOST = os.getenv("BACKEND_HOST")
+BACKEND_URL = os.getenv("BACKEND_URL", f"http://{BACKEND_HOST}:5000")
 
 confession_id = None
 marriage_id = None
